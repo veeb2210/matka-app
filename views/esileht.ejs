@@ -17,19 +17,7 @@
 <body>
     <div class="paiskonteiner">
         <div class="container">
-            <div class="paiserida row align-items-center">
-                <div class="pais-logoala col-md-5 d-flex">
-                    <img src="./pildid/klubilogo.png" class="pais-logo" alt="">
-                    <div class="pais-nimi">Puhas Higi</div>
-                </div>
-                <div class="pais-menyy col-md-7 m-3 m-md-0">
-                    <ul class="d-md-flex flex-column flex-md-row">
-                        <li><a href="./index.html">Esileht</a></li>
-                        <li><a href="./uudised.html">Uudised</a></li>
-                        <li><a href="./kontakt.html">Kontakt</a></li>
-                    </ul>
-                </div>
-            </div>
+            <%- include("./partials/matkamenyy.ejs") %>
             <div class="pealkiri row">
                 <div class="col-md-6 pealkiri-tekstid">
                     <div class="rida">
@@ -51,6 +39,20 @@
                 </div>
                 <div class="col-md-6">siia tuleb pilt</div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <% for (let i = 0; i < matkad.length; i++) { %>
+                <div class="card" style="width:400px">
+                    <img class="card-img-top" src="<%= matkad[i].piltUrl %>" alt="Card image">
+                    <div class="card-body">
+                      <h4 class="card-title"> <%= matkad[i].nimetus %></h4>
+                      <p class="card-text"><%= matkad[i].kirjeldus %></p>
+                      <a href="#" class="btn btn-primary">Registreeru</a>
+                    </div>
+                  </div>                
+            <% } %>
         </div>
     </div>
 </body>
