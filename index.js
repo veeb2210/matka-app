@@ -6,6 +6,7 @@ const path = require('path')
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+const PORT = process.env.PORT || 3000 
 
 const nimed = ['Neti', 'Pepi', 'Aadam', 'Klaabu'];
 
@@ -58,4 +59,4 @@ function naitaEsilehte(req,res) {
     res.render('esileht', {matkad: matkad})
 }
 
-app.listen(80)
+app.listen(PORT, function() {console.log("Matkaäpp kuulab pordil: " + PORT)})
