@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matkaklubi</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    
+    <link rel="stylesheet" href="/matkaklubi.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+         <div class="container">
+            <%- include("./partials/matkamenyy.ejs") %>
+            <div>
+                <div>
+                    <img class="registreerumisPilt" src="<%= matk.piltUrl %>" alt="">
+                </div>
+                <h2><%= matk.nimetus %></h2>
+                <div>
+                    <p>
+                        <%= matk.kirjeldus %>
+                    </p>
+                </div>
+                <h3>Registreeru matkale</h3>
+                <div>
+                    <form action="/registreerumine">
+                        <div class="form-group">
+                            <label for="nimi">Sinu nimi:</label>
+                            <input type="text" class="form-control" id="nimi" name="nimi" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Sinu emaili aaddress:</label>
+                            <input type="email" class="form-control" id="email" name="email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Märkus:</label>
+                            <textarea class="form-control" rows="5" id="markus" name="markus"></textarea>
+                        </div>
+                        <input type="hidden" name="index" value="<%= index %>">
+                        <button type="submit" class="btn btn-default">Registreeru</button>
+                    </form>
+                </div>
+        </div>
+</body>
+</html>
