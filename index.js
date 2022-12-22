@@ -69,9 +69,42 @@ app.get('/matk/:matk', function(req, res) {
 app.get('/registreerumine', registeeruMatkale)
 
 app.get('/api/uudised', tagastaUudised)
-app.get('/api/matkadel_osalejad', function(req, res) {
-  res.json(matkadelOsalejad)
+app.get('/api/matkadel_osalejad', async function(req, res) {
+  //res.json(matkadelOsalejad)
+  try {
+    await client.connect();
+    const database = client.db(andmebaas);
+    const osalejad = database.collection("osalejad");
+    //const filter = { matk: req.params.indeks}
+   
+    result = await osalejad.find({}).toArray()
+    res.json(result)
+  } finally {
+    await client.close();
+  }
+ 
 })
+
+app.get('/api/matkadel_osalejad/:index', async function(req, res) {
+  try {
+    await client.connect();
+    const database = client.db(andmebaas);
+    const osalejad = database.collection("osalejad");
+    const filter = { index: req.params.index}
+   
+    result = await osalejad.find(filter).toArray()
+    res.json(result)
+  } finally {
+    await client.close();
+  }
+ 
+})
+
+app.get('/api/matkad', function(req, res) {
+  res.json(matkad)
+})
+
+
 
 
 function naitaTest(req, res) {
